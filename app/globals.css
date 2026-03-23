@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 38 92% 50%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 15%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.5rem;
+
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* ─── Page enter animation ────────────────────────────────────────────────── */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-page {
+  animation: page-enter 0.18s ease-out both;
+}
+
+/* ─── Radix dropdown/toast animation support ──────────────────────────────── */
+@keyframes radix-fade-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes radix-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes radix-zoom-in  { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes radix-zoom-out { from { opacity: 1; transform: scale(1);   } to { opacity: 0; transform: scale(.95); } }
+@keyframes radix-slide-in-from-top    { from { transform: translateY(-.5rem); } to { transform: translateY(0); } }
+@keyframes radix-slide-in-from-bottom { from { transform: translateY(.5rem);  } to { transform: translateY(0); } }
+
+[data-state="open"].data-\[state\=open\]\:animate-in  { animation: radix-zoom-in 0.12s ease-out both; }
+[data-state="closed"].data-\[state\=closed\]\:animate-out { animation: radix-zoom-out 0.1s ease-in both; }
+[data-state="open"].data-\[state\=open\]\:slide-in-from-bottom-2 { animation: radix-slide-in-from-bottom 0.12s ease-out both; }
